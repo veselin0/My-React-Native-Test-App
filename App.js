@@ -1,10 +1,6 @@
 import React from 'react';
 import {Text, TextInput, View} from 'react-native';
 
-const getFullName = (firstName, secondName, thirdName) => {
-  return `${firstName} ${secondName} ${thirdName}`;
-};
-
 const Cat = () => {
   return (
     <View>
