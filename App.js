@@ -1,17 +1,32 @@
-import React from 'react';
-import {Text, View, Image} from 'react-native';
+import React, {useState} from 'react';
+import {Button, Text, View} from 'react-native';
 
-const Cat = () => {
+const Cat = ({name}) => {
   //destructuring of porops
+  const [isHungry, setIsHungry] = useState(true);
   return (
     <View>
-      <Image
-        source={{uri: 'https://reactnative.dev/docs/assets/p_cat1.png'}}
-        style={{width: 200, height: 200}}
+      <Text>
+        I am {name}, and I am {isHungry ? 'thirsty' : 'full'}!
+      </Text>
+      <Button
+        onPress={() => {
+          setIsHungry(false);
+        }}
+        disabled={!isHungry}
+        title={isHungry ? 'Pour me some beer, please!' : 'Thank you!'}
       />
-      <Text>Hello, I am your cat!</Text>
     </View>
   );
 };
 
-export default Cat;
+const Cafe = () => {
+  return (
+    <>
+      <Cat name="Gocho" />
+      <Cat name="Kochev" />
+    </>
+  );
+};
+
+export default Cafe;
