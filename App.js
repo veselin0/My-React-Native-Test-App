@@ -1,85 +1,42 @@
-import React, {Component} from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  TouchableOpacity,
-  TouchableNativeFeedback,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, ScrollView, SafeAreaView} from 'react-native';
+//import Constants from 'expo-constants';
 
-export default class Touchables extends Component {
-  _onPressButton() {
-    // eslint-disable-next-line no-alert
-    alert('You tapped a button!');
-  }
-
-  _onLongPressButton() {
-    // eslint-disable-next-line no-alert
-    alert('You long-pressed a button!');
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <TouchableHighlight onPress={this._onPressButton} underlayColor="red">
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>TouchableHighlight</Text>
-          </View>
-        </TouchableHighlight>
-        <TouchableOpacity>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>TouchableOpacity</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableNativeFeedback
-          onPress={this._onPressButton}
-          background={
-            Platform.OS === 'android'
-              ? TouchableNativeFeedback.SelectableBackground()
-              : ''
-          }>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>
-              TouchableNativeFeedback{' '}
-              {Platform.OS !== 'android' ? '(Android only)' : ''}
-            </Text>
-          </View>
-        </TouchableNativeFeedback>
-        <TouchableWithoutFeedback onPress={this._onPressButton}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>TouchableWithoutFeedback</Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableHighlight
-          onPress={this._onPressButton}
-          onLongPress={this._onLongPressButton}
-          underlayColor={'yellowgreen'}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Touchable with Long Press</Text>
-          </View>
-        </TouchableHighlight>
-      </View>
-    );
-  }
-}
+const App = () => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.ScrollView}>
+        <Text style={styles.text}>
+          This equipment has been tested and found to comply with the limits for
+          a Class B digital device, pursuant to part 15 of the FCC Rules. These
+          limits are designed to provide reasonable protection against harmful
+          interference in a residential installation. This equipment generates,
+          uses and can radiate radio frequency energy and, if not installed and
+          used in accordance with the instructions, may cause harmful
+          interference to radio communications. However, there is no guarantee
+          that interference will not occur in a particular installation. If this
+          equipment does cause harmful interference to radio or television
+          reception, which can be determined by turning the equipment off and
+          on, the user is encouraged to try to correct the interference by one
+          or more of the following measures:
+        </Text>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 140,
-    alignItems: 'center',
+    flex: 1,
+    //marginTop: Constants.statusBarHeight,
   },
-  button: {
-    marginBottom: 30,
-    width: 300,
-    alignItems: 'center',
-    backgroundColor: '#2196F3',
+  ScrollView: {
+    backgroundColor: 'skyblue',
+    marginHorizontal: 20,
   },
-  buttonText: {
-    textAlign: 'center',
-    padding: 20,
-    color: 'white',
+  text: {
+    fontSize: 42,
   },
 });
+
+export default App;
