@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
-  View,
   FlatList,
   StyleSheet,
   Text,
   StatusBar,
+  TouchableOpacity,
 } from 'react-native';
 
 const DATA = [
@@ -23,21 +23,35 @@ const DATA = [
   },
 ];
 
-const Item = ({title}) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
+const Item = ({item, onPress, style}) => (
+  <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
+    <Text style={styles.title}>{item.title}</Text>
+  </TouchableOpacity>
 );
 
 const App = () => {
-  const renderItem = ({item}) => <Item title={item.title} />;
+  const [selectedId, setSelectedId] = useState(null);
+
+  const renderItem = ({item}) => {
+    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+  
+
+    return (
+      <Item
+        item={item}
+        onPress={() => setSelectedId(item.id)}
+        style= {{backgroundColor}}
+      />
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
+      <FlatList 
         data={DATA}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item => item.id)}
+        extraData={selectedId}
       />
     </SafeAreaView>
   );
@@ -49,7 +63,6 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    backgroundColor: '#f9c2ff',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
