@@ -1,10 +1,11 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-const Cat = () => {
+const Cat = ({name}) => {
+  //destructuring of porops
   return (
     <View>
-      <Text>Hello, I am also a cat!</Text>
+      <Text>Hello, I am {name}!</Text>
     </View>
   );
 };
@@ -13,9 +14,9 @@ const Cafe = () => {
   return (
     <View>
       <Text>Welcome!</Text>
-      <Cat />
-      <Cat />
-      <Cat />
+      <Cat name="Gocho" />
+      <Cat name="Kochev" />
+      <Cat name="The Prophet" />
     </View>
   );
 };
