@@ -1,24 +1,45 @@
-import React, {useState} from 'react';
-import {Text, TextInput, View} from 'react-native';
+import React, {Component} from 'react';
+import {Button, StyleSheet, View} from 'react-native';
 
-const PizzaTranslator = () => {
-  const [text, setText] = useState('');
-  return (
-    <View style={{padding: 10}}>
-      <TextInput
-        style={{height: 40}}
-        placeholder="Type here to translate!"
-        onChangeText={(text) => setText(text)}
-        defaultValue={text}
-      />
-      <Text style={{padding: 10, fontSize: 42}}>
-        {text
-          .split(' ')
-          .map((word) => word && 'Gocho')
-          .join(' ')}
-      </Text>
-    </View>
-  );
-};
+export default class ButtonBasics extends Component {
+  _onPressButton() {
+    // eslint-disable-next-line no-alert
+    alert('You tapped a button!');
+  }
 
-export default PizzaTranslator;
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <Button onPress={this._onPressButton} title="Press Me" />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+            color="#841584"
+          />
+        </View>
+        <View style={styles.alternativeLayoutButtonContainer}>
+          <Button onPress={this._onPressButton} title="This looks great!" />
+          <Button onPress={this._onPressButton} title="OK!" color="#841584" />
+        </View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  buttonContainer: {
+    margin: 20,
+  },
+  alternativeLayoutButtonContainer: {
+    margin: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+});
